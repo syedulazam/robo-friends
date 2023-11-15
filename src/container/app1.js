@@ -5,6 +5,7 @@ import "tachyons";
 import CardList from "../component/cardList";
 import SearchBox from "../component/searchBox";
 import Scroll from "../component/scroll";
+import ErrorBoundary from "../component/errorBoundary";
 
 class App1 extends Component {
   constructor() {
@@ -55,7 +56,9 @@ class App1 extends Component {
         <h1>ROBOFRIENDS</h1>
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll className="parent-container">
-          <CardList Robot={filteredRobots} />
+          <ErrorBoundary>
+            <CardList Robot={filteredRobots} />
+          </ErrorBoundary>
         </Scroll>{" "}
         {/* Normally, we would have written Robot={Robot} in order to get the details of cards. But we are using "this.state.Robot"
                                                    now becauase we are trying to acces Robot from the constructor instead of from the imports now because we want to use 
